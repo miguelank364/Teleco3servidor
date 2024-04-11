@@ -1,0 +1,8 @@
+Estos son los comandos para habilitar los puertos necesarios en el firewall del servidor 2:
+
+sudo ufw allow from 192.168.50.3 to any port 21 proto tcp
+sudo ufw allow 20,990/tcp
+sudo ufw allow 40001:40100/tcp
+
+Nota: La regla que habilita el puerto 21 debe estar en la primera 
+posición de la lista de reglas del firewall para darle prioridad.

@@ -1,0 +1,4 @@
+Estos son los comandos para habilitar los puertos necesarios en el firewall del servidor 1:
+
+sudo ufw allow 20,21,990/tcp
+sudo ufw allow 40001:40100/tcp
