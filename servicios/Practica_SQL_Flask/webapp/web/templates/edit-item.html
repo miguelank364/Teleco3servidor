@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Item</h2>
+    <!-- Agregar enlace para volver a la página de inicio -->
+    <a href="/" class="btn btn-primary mb-3">Back to Home</a>
+    <form id="edit-item-form">
+        <input type="hidden" id="item-id" value="">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="item-name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="price">Password</label>
+            <input type="price" class="form-control" id="item-price" required>
+        </div>
+	<button type="submit" class="btn btn-primary" onclick="updateItem()">Save Changes</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/static/script.js"></script>
+<script>
+    // Obtener el ID del usuario de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    //const userId = urlParams.get('id');
+    const itemId = {{id}}    
+    // Obtener la información del usuario y llenar el formulario
+    fetch(`/api/items/${itemId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('item-id').value = data.id;
+            document.getElementById('item-name').value = data.name;
+            document.getElementById('item-price').value = data.price;
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
+</body>
+</html>
+
