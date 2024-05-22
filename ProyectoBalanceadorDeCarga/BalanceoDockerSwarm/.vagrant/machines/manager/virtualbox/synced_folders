@@ -1,0 +1,1 @@
+{"virtualbox":{"/sincro":{"guestpath":"/sincro","hostpath":"C:/teleco/BalanceoDocker/sincro","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/teleco/BalanceoDocker","disabled":false,"__vagrantfile":true}}}
