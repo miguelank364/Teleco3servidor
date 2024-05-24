@@ -1,1 +1,1 @@
-{"virtualbox":{"/sincro":{"guestpath":"/sincro","hostpath":"C:/teleco/BalanceoDocker/sincro","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/teleco/BalanceoDocker","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/sincro":{"guestpath":"/sincro","hostpath":"C:/teleco/sincro/ProyectoBalanceadorDeCarga/BalanceoDockerSwarm/sincro","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/teleco/sincro/ProyectoBalanceadorDeCarga/BalanceoDockerSwarm","disabled":false,"__vagrantfile":true}}}

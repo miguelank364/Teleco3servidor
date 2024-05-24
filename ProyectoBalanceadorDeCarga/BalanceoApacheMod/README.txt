@@ -1,6 +1,6 @@
 #La carpeta actual contiene un vagrantFile que provisiona las máquinas mediante scripts, lo único que hay que hacer es encender las máquinas 
 #Mediante el vagrantFile que se encuentra en la carpeta, esto automáticamente descarga todas las dependencias, configura y monta los servidores
-# y el balanceador de carga, además de un servidor DNS que registra un dominio www.balanceo-carga.com
+# y el balanceador de carga, además de un servidor DNS que registra un dominio www.balanceo-carga.com, excepto el SSL cuya configuración se describe más adelante.
 
 vagrant up
 
@@ -217,6 +217,28 @@ sudo systemctl status apache2
 #www.balanceo-carga.com
 
 #Debe cargar la pagina que se configuró en ambos servidores 
+
+#-----------------Configuración SSL--------------------------
+#Para la configuración del SSL se debe instalar el openssl para la creación de certificados autofirmados
+sudo apt-get install openssl
+
+#Se genera la llave publica y el certificado
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/balanceo-carga.key -out /etc/ssl/certs/balanceo-carga.crt
+
+#Se configura el sitio para que permita el certificado SSL en su respectivo archivo de configuración
+sudo vim /etc/apache2/sites-available/loadBalancer.conf
+
+#Se agregan al archivo las siguientes lineas de configuración
+
+   SSLEngine on
+   SSLCertificateFile /etc/ssl/certs/balanceo-carga.crt
+   SSLCertificateKeyFile /etc/ssl/private/balanceo-carga.key
+
+#Se reinicia el servicio
+
+sudo systemctl restart apache2
+
+#Se realizan pruebas en el navegador
 
 #-----------Pruebas de carga con artillery ------------------
 #En maquina host, en windows se be instalar node.js y npm, para instalar artillery

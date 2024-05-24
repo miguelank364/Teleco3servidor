@@ -1,0 +1,18 @@
+config:
+  target: "http://192.168.50.3"  # IP del nodo manager
+  phases:
+    - duration: 30
+      arrivalRate: 30   # 10 usuarios por segundo durante 60 segundos
+      rampTo: 40 
+      name: Warm up
+    - duration: 60
+      arrivalRate: 40   # 20 usuarios por segundo durante 60 segundos
+      rampTo: 80
+      name: Ramp up to peak load
+    - duration: 120
+      arrivalRate: 80   # 30 usuarios por segundo durante 60 segundos
+      name: Peak load
+scenarios:
+  - flow:
+      - get:
+          url: "/"

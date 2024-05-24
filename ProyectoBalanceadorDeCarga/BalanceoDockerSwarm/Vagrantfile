@@ -15,10 +15,9 @@ config.vm.define :manager do |manager|
   manager.vm.box = "bento/ubuntu-22.04"
   manager.vm.network :private_network, ip: "192.168.50.30"
   manager.vm.hostname = "manager"
-# manager.vm.network :public_network
+ #manager.vm.network :public_network, ip: "192.168.1.30"
   manager.vm.synced_folder "./sincro", "/sincro"
   manager.vm.provision "shell", path: "scriptDocker.sh"
- # manager.vm.provision "file", source: "webapp", destination: "/home/vagrant/webapp"
   manager.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
   end
@@ -27,12 +26,11 @@ end
   #Nodo Worker 1
 config.vm.define :worker1 do |worker1|
   worker1.vm.box = "bento/ubuntu-22.04"
-  worker1.vm.network :private_network, ip: "192.168.50.10"
+ worker1.vm.network :private_network, ip: "192.168.50.10"
   worker1.vm.hostname = "worker1"
-# worker1.vm.network :public_network
+# worker1.vm.network :public_network, ip: "192.168.1.10"
   worker1.vm.synced_folder "./sincro", "/sincro"
   worker1.vm.provision "shell", path: "scriptDocker.sh"
-#  worker1.vm.provision "file", source: "webapp", destination: "/home/vagrant/webapp"
   worker1.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
   end
@@ -43,11 +41,23 @@ config.vm.define :worker2 do |worker2|
   worker2.vm.box = "bento/ubuntu-22.04"
   worker2.vm.network :private_network, ip: "192.168.50.20"
   worker2.vm.hostname = "worker2"
-# worker2.vm.network :public_network
+# worker2.vm.network :public_network, ip: "192.168.1.20"
   worker2.vm.synced_folder "./sincro", "/sincro"
   worker2.vm.provision "shell", path: "scriptDocker.sh"
-#  worker2.vm.provision "file", source: "webapp", destination: "/home/vagrant/webapp"
   worker2.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+  end
+end
+
+  #Nodo Worker 3
+config.vm.define :worker3 do |worker3|
+  worker3.vm.box = "bento/ubuntu-22.04"
+  worker3.vm.network :private_network, ip: "192.168.50.21"
+  worker3.vm.hostname = "worker3"
+# worker3.vm.network :public_network, ip: "192.168.1.21"
+  worker3.vm.synced_folder "./sincro", "/sincro"
+  worker3.vm.provision "shell", path: "scriptDocker.sh"
+  worker3.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
   end
 end
